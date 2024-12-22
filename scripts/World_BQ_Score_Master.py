@@ -32,7 +32,7 @@ csv_filename_daily = f"WORLD_Stock_Daily_{ist_now.strftime('%Y-%m')}_score_maste
 excel_filename = f"WORLD_Stock_Master_DataLake_score_master.xlsx"  # Excel file for today
 
 # Define base directory
-BASE_DIR = "WORLD_Test"
+BASE_DIR = "WORLD_Stock"
 
 # Subdirectories under WORLD
 MASTER_DIR = os.path.join(BASE_DIR, "master_world")
