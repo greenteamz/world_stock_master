@@ -76,7 +76,7 @@ jobs:
         git config --global lfs.required true  # Git LFS (Large File Storage) configuration
         
         git status
-        git add scripts/* .github/* WORLD_Test/*
+        git add  WORLD_Stock/*
         
         # Check for large files and ensure they are handled with Git LFS
         git lfs track "*.csv" "*.xls" "*.xlsx" "*.log"  # Adjust based on your file types
