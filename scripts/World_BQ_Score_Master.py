@@ -71,7 +71,7 @@ gc = gspread.service_account(filename=SERVICE_ACCOUNT_FILE)
 # Open Google Spreadsheet
 spreadsheet = gc.open('NSE_symbol')  # Replace with your Google Sheet name
 #source_worksheet = spreadsheet.worksheet('symbol')  # Replace with your sheet name
-source_worksheet = spreadsheet.worksheet('symbol_world_2')  # Test sheet name
+source_worksheet = spreadsheet.worksheet('symbol_world_3')  # Test sheet name
 
 # Fetch all stock symbols from the first column
 symbols = source_worksheet.col_values(1)[1:]  # Skip header row
