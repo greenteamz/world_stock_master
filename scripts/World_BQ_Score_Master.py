@@ -71,7 +71,7 @@ gc = gspread.service_account(filename=SERVICE_ACCOUNT_FILE)
 # Open Google Spreadsheet
 spreadsheet = gc.open('NSE_symbol')  # Replace with your Google Sheet name
 #source_worksheet = spreadsheet.worksheet('symbol')  # Replace with your sheet name
-source_worksheet = spreadsheet.worksheet('symbol_world_3')  # Test sheet name
+source_worksheet = spreadsheet.worksheet('symbol_world_4')  # Test sheet name
 
 # Fetch all stock symbols from the first column
 symbols = source_worksheet.col_values(1)[1:]  # Skip header row
@@ -300,7 +300,7 @@ def append_to_csv(data_row, total_symbol):
 
         log_message(f" count: {processed_count}/{total_symbol}")
 
-        '''        
+        #'''        
         # If it's the last row, calculate the ranks and update the file
         if processed_count==total_symbol:
             # Load the CSV file into DataFrame to calculate ranks
@@ -324,7 +324,7 @@ def append_to_csv(data_row, total_symbol):
                 log_message(f"Sector and Industry Rank calculation completed and saved to Master CSV file: {MASTER_CSV_FILE_PATH}")
             else:
                 print(df.columns)
-        '''
+        #'''
 
     """Append a row of data to the CSV file, adding the header only if it's a new file."""
     write_header = not os.path.exists(Daily_CSV_FILE_PATH)  # Check if file exists
@@ -337,7 +337,7 @@ def append_to_csv(data_row, total_symbol):
         writer.writerow(data_row)
         log_message(f"Appended data to Daily CSV file: {Daily_CSV_FILE_PATH}")
         
-        '''
+        #'''
         # If it's the last row, calculate the ranks and update the file
         if processed_count==total_symbol:
             # Load the CSV file into DataFrame to calculate ranks
@@ -389,7 +389,7 @@ def append_to_csv(data_row, total_symbol):
             # Save the updated Excel file
             workbook.save(EXCEL_FILE_PATH)
             log_message(f"Data successfully appended to Excel file: {EXCEL_FILE_PATH}_{sheet_name}")
-        '''
+        #'''
 
 def append_to_excel(data_row, total_symbol):
     """Append data to an Excel sheet, creating a new sheet for the day."""
@@ -818,17 +818,17 @@ for symbol in symbols:
 
 # Define BigQuery dataset and table with the project ID
 PROJECT_ID = "stockautomation-442015"  # Replace with your project ID
-BQ_DATASET = "World_stock_score_master_test"  # Replace with your dataset name
-BQ_TABLE = f"{PROJECT_ID}.{BQ_DATASET}.World_stock_master_1"  # Fully-qualified table name
+BQ_DATASET = "World_stock_score_master"  # Replace with your dataset name
+BQ_TABLE = f"{PROJECT_ID}.{BQ_DATASET}.World_stock_master"  # Fully-qualified table name
 
 # BigQuery authentication
 bq_client = bigquery.Client.from_service_account_json(SERVICE_ACCOUNT_FILE)
 
 # Ensure dataset and table exist in BigQuery
-#ensure_dataset_exists()
-#ensure_table_exists()
+ensure_dataset_exists()
+ensure_table_exists()
 
 # Load the data into BigQuery from the CSV file
-#load_data_to_bigquery()
+load_data_to_bigquery()
 
 log_message("World stock fetch Script execution completed.")
